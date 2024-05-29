@@ -1,61 +1,89 @@
-## Task num 1
-# def count_words_in_file(file_name):
-#     try:
-#         file = open(file_name, 'r', encoding='utf-8')
-#         with file:
-#             return len(file.read().split())
-#     except FileNotFoundError:
-#         return " Fayl topilmadi"
-
-
-# file_name = "oquvchi.txt"
-# print(f"'{file_name}' faylidagi sozlar soni: {count_words_in_file (file_name)}")
-
-
-
-
 # # Task num 2
-# def find_longest_word_in_file(file_name):
-#     try:
-#         with open(file_name, 'r', encoding='utf-8') as file:
-#             words = file.read().split()
-#             if not words:
-#                 return "Faylda sozlar topilmadi"
-#             longest_word = max(words, key=len)
-#             return longest_word
-#     except FileNotFoundError:
-#         return " Fayl topilmadi"
-#     except Exception as e:
-#         return f"Hato yuz berdi: {e}"
+# class Iterable_Class:
+#     def __init__(self, data):
+#         self.data = data
+#         self.index = 0
+
+#     def __iter__(self):
+#         return self
+
+#     def __next__(self):
+#         if self.index < len(self.data):
+#             result = self.data[self.index]
+#             self.index += 1
+#             return result
+#         else:
+#             raise StopIteration
 
 
-# file_name = "oquvchi.txt"
-#print(f"'{file_name}' faylidagi eng uzun soz: {find_longest_word_in_file (file_name)}")
+# objects = Iterable_Class([2, 9, 5, 3, 7])
 
+# for i in objects:
+#     print(i)
 
 
 
 # # Task num 3
-# def find_disruption(numbers):
-#     for i in range(1, len(numbers)):
-#         if numbers[i] < numbers[i - 1]:
-#             return numbers[i]
-#     return "Royxat osish tartibida."
+# class Iterable_Class:
+#     def __init__(self, data):
+#         self.data = data
+#         self.index = 0
+
+#     def __iter__(self):
+#         return self
+
+#     def __next__(self):
+#         if self.index < len(self.data):
+#             result = self.data[self.index]
+#             self.index += 1
+#             return result
+#         else:
+#             raise StopIteration
+
+# def filter_odd_nums(num):
+#     return num % 2 != 0
 
 
-# numbers = [1, 2, 4, 5, 6, 8, 7]
-# print(f"Buzilgan raqam: {find_disruption(numbers)}")
+# objects = Iterable_Class([1, 2, 3, 4, 5, 6, 7, 8])
+# filtered_objs = filter(filter_odd_nums, objects)
+
+# for i in filtered_objs:
+#     print(i)
 
 
 
+# Task num 4
+class Iterable_id:
+    objects = []
 
-# # Task num 4
-# emails = ["ali@gmail.com", 55, "asad@gmail.com", 'Assalomu aleykum', "hasan@gmail.com", 3.09, "fotima@gmail.com"]
+    def __init__(self, data):
+        self.data = data
+        self.index = 0
+        Iterable_id.objects.append(self)
 
-# gmail_emails = [str(email) for email in emails if isinstance(email, str) and email.endswith("@gmail.com")]
-# sorted_gmail_emails = sorted(gmail_emails)
+    @classmethod
+    def get_id(cls):
+        ids = []
+        for i in cls.objects:
+            ids.append(id(i))
+        return ids
 
-# print('Gmaillar: ')
-# for email in sorted_gmail_emails:
-#     print(email)
+    def __iter__(self):
+        self.index = 0
+        return self
 
+    def __next__(self):
+        if self.index < len(Iterable_id.objects):
+            result = id(Iterable_id.objects[self.index])
+            self.index += 1
+            return result
+        else:
+            raise StopIteration
+
+
+obj_1 = Iterable_id([1, 2, 3])
+obj_2 = Iterable_id([4, 5, 6])
+obj_3 = Iterable_id([7, 8, 9])
+
+for obj_id in Iterable_id.get_id():
+    print(obj_id)
