@@ -58,4 +58,3 @@
 # print('Gmaillar: ')
 # for email in sorted_gmail_emails:
 #     print(email)
-
