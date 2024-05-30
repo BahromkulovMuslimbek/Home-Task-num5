@@ -1,3 +1,4 @@
+
 ## Task num 1
 # def count_words_in_file(file_name):
 #     try:
@@ -58,3 +59,4 @@
 # print('Gmaillar: ')
 # for email in sorted_gmail_emails:
 #     print(email)
+
